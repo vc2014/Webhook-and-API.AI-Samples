@@ -29,7 +29,7 @@ restService.post("/echo", function(req, res) {
 
   console.log("intent :" + intent)
   console.log("text :" + speech)
-  sendCard(req,res)
+  sendTextMessage(req,res)
 });
 
 function sendCard(req, res){
@@ -57,6 +57,39 @@ function sendCard(req, res){
   }); 
 }
 
+function sendTextMessage(req,res){
+	return res.json({
+	  fulfillmentText: "text response",
+	  fulfillmentMessages: [
+		{
+		  text: [
+			"text response"
+		  ],
+		}
+	  ],
+	  source: "webhook-echo-sample",
+	  payload: {
+		google: {
+		  expectUserResponse: true,
+		  richResponse: {
+			items: [
+			  {
+				simpleResponse: {
+				  "textToSpeech": "this is a simple response"
+				}
+			  }
+			]
+		  }
+		},
+		facebook: {
+		  text: "Hello, Facebook!"
+		},
+		slack: {
+		  text: "This is a text response for Slack."
+		}
+	  }
+	});
+}
 
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
