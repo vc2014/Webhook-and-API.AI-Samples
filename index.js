@@ -29,10 +29,13 @@ restService.post("/echo", function(req, res) {
 
   console.log("intent :" + intent)
   console.log("text :" + speech)
-  return sendCard(speech, speech, null, speech, null )  
+  sendCard(req,res)
 });
 
-function sendCard(cardTitle, cardSubTitle, imageUri, buttonText, buttonPostBack){
+function sendCard(req, res){
+	var cardTitle = 'test'
+	var cardSubTitle = 'test'
+	var buttonText = 'button'
 	return res.json({
     fulfillmentText: speech,
 	fulfillmentMessages: [
