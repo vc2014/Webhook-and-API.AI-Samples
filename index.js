@@ -59,36 +59,56 @@ function sendCard(req, res){
 
 function sendTextMessage(req,res){
 	return res.json({
-	  fulfillmentText: "text response",
-	  fulfillmentMessages: [
-		{
-		  text: [
-			"text response"
-		  ],
-		}
-	  ],
-	  source: "webhook-echo-sample",
-	  payload: {
-		google: {
-		  expectUserResponse: true,
-		  richResponse: {
-			items: [
-			  {
-				simpleResponse: {
-				  "textToSpeech": "this is a simple response"
-				}
-			  }
-			]
-		  }
-		},
-		facebook: {
-		  text: "Hello, Facebook!"
-		},
-		slack: {
-		  text: "This is a text response for Slack."
-		}
-	  }
-	});
+  fulfillmentText: "text response",
+  fulfillmentMessages: [
+    
+      {
+        platform: "ACTIONS_ON_GOOGLE",
+        simpleResponses: {
+          simpleResponses: [
+            {
+              textToSpeech: "I am checking the weather .... wait sometime"
+            }
+          ]
+        }
+      },
+      {
+        text: {
+          text: [
+            "I am checking the weather .... wait sometime"
+          ]
+        },
+        platform: "SLACK"
+      },
+      {
+        text: {
+          text: [
+            "Text"
+          ]
+        },
+        platform: "SLACK"
+      },
+      {
+        platform: "ACTIONS_ON_GOOGLE",
+        simpleResponses: {
+          simpleResponses: [
+            {
+              textToSpeech: "Text"
+            }
+          ]
+        }
+      },
+      {
+		  text: {
+          text: [
+            "I am checking the weather .... wait sometime"
+          ]
+        }
+      }
+    ],
+  source: "webhook-echo-sample",
+  
+});
 }
 
 restService.listen(process.env.PORT || 8000, function() {
