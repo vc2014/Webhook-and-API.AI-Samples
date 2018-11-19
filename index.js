@@ -35,9 +35,9 @@ restService.post("/echo", function(req, res) {
 function sendCard(req, res){
 	var cardTitle = 'test'
 	var cardSubTitle = 'test'
-	var buttonText = 'button'
+	var buttonText = 'button';
 	return res.json({
-    fulfillmentText: speech,
+    fulfillmentText: cardTitle,
 	fulfillmentMessages: [
     {
       card: {
